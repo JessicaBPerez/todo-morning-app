@@ -4,7 +4,10 @@ export default class Todo extends Component {
   render() {
     return (
       <div>
-        <h1>To do's!</h1>
+        <div>{this.props.individualTodo}</div>
+        <button onClick={() => this.props.deleteTodos(this.props.index)}>
+          Delete This To-Do
+        </button>
       </div>
     );
   }
