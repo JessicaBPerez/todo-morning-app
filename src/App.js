@@ -1,25 +1,46 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
 class App extends Component {
+  state = {
+    todos: [
+      {
+        todo: "clean garage"
+      }
+    ],
+    newTodo: {
+      name: ""
+    }
+  };
+
+  //Function to update the form's value while typing
+  handleChange = event => {
+    const cloneNewTodo = { ...this.state.newTodo };
+    cloneNewTodo[event.target.name] = event.target.value;
+    this.setState({ newTodo: cloneNewTodo });
+  };
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>App Here</h1>
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              onChange={this.handleChange}
+              value={this.state.newTodo.name}
+              name="name"
+              placeholder="Enter name of todo"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+        </form>
       </div>
     );
   }
